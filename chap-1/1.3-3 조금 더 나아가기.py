@@ -2,6 +2,9 @@ import sys
 
 
 def get_string_statistics(str_list):
+    """
+    문자열 리스트를 받아서 최소, 최대, 평균 길이를 튜플로 반환하는 함수
+    """
     min_len = sys.maxsize
     max_len = 0
     total_len = 0
@@ -20,10 +23,26 @@ def get_string_statistics(str_list):
     return min_len, max_len, avg_len
 
 
-if __name__ == '__main__':
-    input_list = ["a", "bb", "ccc", "dddd"]
-    print(input_list)
-    result = get_string_statistics(input_list)
+def sum_only_numbers(input_list):
+    """
+    입력 받은 리스트에서 숫자로 변환 가능한 것만 더하기
+    """
+    total_sum = 0
 
-    print(type(result))
+    for item in input_list:
+        try:
+            total_sum += int(item)
+        except ValueError:
+            continue
+
+    return total_sum
+
+
+if __name__ == '__main__':
+    # 1
+    input_list = ["a", "bb", "ccc", "dddd"]
+    result = get_string_statistics(input_list)
     print(result)
+
+    # 2
+    print(sum_only_numbers(["a", 1, 2, "3", "안녕"]))
