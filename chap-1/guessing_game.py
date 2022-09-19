@@ -6,19 +6,27 @@ sorted_list = sorted(word_list, reverse=True)
 
 
 def guessing_game():
-    print(sorted_list)
-    selected_index = random.randint(0, len(sorted_list) - 1)
+    print(f'This is list: {sorted_list}')
+    len_sorted_list = len(sorted_list)
+    user_input_msg = f'Guess what word is selected (index 0 ~ {len_sorted_list - 1}): '
+
+    selected_index = random.randint(0, len_sorted_list - 1)
 
     while True:
-        user_input = input('Guess number (0 ~ 10): ')
+        user_input = input(user_input_msg)
+
+        if not user_input.isdigit():
+            print("Only input number")
+            continue
+
         try:
             answer = int(user_input)
         except ValueError:
             print('[Error] Input only digit !!')
             continue
 
-        if answer < 0 or answer > 10:
-            print('[Error] Out of input number range !!')
+        if answer < 0 or answer >= len_sorted_list:
+            print('[Error] Out of index range !!')
             continue
 
         if selected_index == answer:
